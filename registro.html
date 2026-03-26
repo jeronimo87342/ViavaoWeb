@@ -2,174 +2,112 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VIVAO - Registro de Pilotos</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Rajdhani:wght@300;500;700&display=swap');
-        
-        body {
-            background: #050505;
-            color: #e0e0e0;
-            font-family: 'Rajdhani', sans-serif;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
+        body, html {
+            margin: 0; padding: 0; height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at center, #0d1117 0%, #000000 100%);
+            color: white; display: flex; justify-content: center; align-items: center;
         }
-
-        /* Fondo Animado */
-        .bg-glow {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 50% 50%, #1a3a8a 0%, #000 70%);
-            z-index: -1;
-        }
-
-        .glass-box {
-            background: rgba(255, 255, 255, 0.03);
+        .register-card {
+            background: rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 50px;
-            border-radius: 5px;
-            width: 100%;
-            max-width: 450px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            padding: 40px; border-radius: 20px; width: 400px; text-align: center;
         }
-
-        h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 900;
-            letter-spacing: 8px;
-            text-align: center;
-            color: #fff;
-            margin-bottom: 40px;
-        }
-
-        .input-group {
-            position: relative;
-            margin-bottom: 25px;
-        }
-
+        h1 { color: #00d4ff; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 30px; }
+        p { color: #8b949e; font-size: 14px; margin-bottom: 25px; }
         input {
-            width: 100%;
-            background: rgba(255,255,255,0.05) !important;
-            border: 1px solid rgba(255,255,255,0.1) !important;
-            padding: 12px 15px;
-            color: #fff !important;
-            outline: none;
-            font-size: 16px;
+            width: 100%; padding: 15px; margin: 10px 0;
+            background: rgba(0, 0, 0, 0.5); border: 1px solid #222;
+            border-radius: 12px; color: white; outline: none; box-sizing: border-box;
             transition: 0.3s;
         }
-
-        input:focus {
-            border-color: #3b82f6 !important;
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+        input:focus { border-color: #00d4ff; }
+        .btn-reg {
+            width: 100%; padding: 16px; margin-top: 20px;
+            background: linear-gradient(135deg, #00d4ff 0%, #008fb3 100%);
+            border: none; border-radius: 12px; color: #000;
+            font-weight: 700; text-transform: uppercase; cursor: pointer;
+            transition: 0.3s;
         }
-
-        label {
-            display: block;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 8px;
-            color: #3b82f6;
-            font-weight: 700;
-        }
-
-        .btn-VIVAO {
-            width: 100%;
-            padding: 15px;
-            background: #3b82f6;
-            color: #fff;
-            border: none;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            cursor: pointer;
-            transition: 0.4s;
-            margin-top: 10px;
-        }
-
-        .btn-VIVAO:hover {
-            background: #2563eb;
-            letter-spacing: 5px;
-            box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
-        }
-
-        #msg { text-align: center; margin-top: 20px; font-weight: 700; font-size: 14px; }
+        .btn-reg:hover { transform: scale(1.02); box-shadow: 0 0 20px rgba(0, 212, 255, 0.4); }
+        .footer-text { margin-top: 25px; font-size: 11px; color: #444; }
+        a { color: #00d4ff; text-decoration: none; font-size: 13px; }
     </style>
 </head>
 <body>
-    <div class="bg-glow"></div>
-    <div class="glass-box">
-        <h2>VIVAO</h2>
-        <form id="registroForm" onsubmit="return false;">
-            <div class="input-group">
-                <label>Callsign / Piloto</label>
-                <input type="text" id="nombre" placeholder="EJ. CAP-JERO" required>
-            </div>
-            <div class="input-group">
-                <label>Email de Red</label>
-                <input type="email" id="email" placeholder="PILOTO@VIVAO.COM" required>
-            </div>
-            <div class="input-group">
-                <label>Contraseña</label>
-                <input type="password" id="pass" placeholder="••••••••" required>
-            </div>
-            <button type="submit" class="btn-VIVAO">Dar de Alta</button>
-        </form>
-        <div id="msg"></div>
-        <div class="mt-8 text-center text-xs">
-            <a href="login.html" class="opacity-40 hover:opacity-100 transition tracking-widest uppercase">¿Ya eres piloto? Iniciar Sesión</a>
-        </div>
+
+    <div class="register-card">
+        <h1>VIVAO</h1>
+        <p>RECLUTAMIENTO DE NUEVOS PILOTOS</p>
+        
+        <input type="text" id="nombre" placeholder="Nombre Completo">
+        <input type="email" id="email" placeholder="Email (Será tu ID de acceso)">
+        <input type="password" id="password" placeholder="Contraseña segura">
+        
+        <button class="btn-reg" onclick="register()">CREAR EXPEDIENTE</button>
+        
+        <p class="footer-text">
+            ¿Ya tienes cuenta? <a href="login.html">Inicia Sesión</a><br><br>
+            By CapiJero - VIVAO Network
+        </p>
     </div>
-    
 
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
+        import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
 
+        // TUS APIS REALES DE VIVAO
         const firebaseConfig = {
-  apiKey: "AIzaSyBFKirjCei95Afzajmdvg4hkgPa3etErwM",
-  authDomain: "NEXUS-8e499.firebaseapp.com",
-  projectId: "NEXUS-8e499",
-  storageBucket: "NEXUS-8e499.firebasestorage.app",
-  messagingSenderId: "475032258661",
-  appId: "1:475032258661:web:c6039e7ab56d0466e51e8c",
-  measurementId: "G-F5GHE40G60"
-};
+            apiKey: "AIzaSyBFKirjCei95Afzajmdvg4hkgPa3etErwM",
+            authDomain: "nexus-8e499.firebaseapp.com",
+            projectId: "nexus-8e499",
+            storageBucket: "nexus-8e499.firebasestorage.app",
+            messagingSenderId: "475032258661",
+            appId: "1:475032258661:web:c6039e7ab56d0466e51e8c",
+        };
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        document.getElementById('registroForm').addEventListener('submit', async () => {
-            const mail = document.getElementById('email').value;
-            const pw = document.getElementById('pass').value;
-            const user = document.getElementById('nombre').value;
-            const msg = document.getElementById('msg');
-            msg.innerText = "PROCESANDO DATOS...";
+        window.register = async () => {
+            const nombre = document.getElementById('nombre').value;
+            const email = document.getElementById('email').value.toLowerCase();
+            const pass = document.getElementById('password').value;
+
+            if (!nombre || !email || !pass) {
+                alert("Capi, rellena todos los datos del formulario.");
+                return;
+            }
 
             try {
-                const res = await createUserWithEmailAndPassword(auth, mail, pw);
-                await setDoc(doc(db, "pilotos", res.user.uid), {
-                    nombre_usuario: user,
-                    email: mail,
+                // 1. Creamos el usuario en Authentication
+                const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
+                const user = userCredential.user;
+
+                // 2. Creamos el documento en la colección "pilotos" (Firestore)
+                // Usamos el UID de Firebase para que sea único
+                await setDoc(doc(db, "pilotos", user.uid), {
+                    nombre: nombre,
+                    email: email,
                     rango: "Cadete",
-                    horas_vuelo: 0
+                    horas_vuelo: 0,
+                    fecha_ingreso: new Date().toISOString(),
+                    discordId: null, // Se llenará cuando usen tu login con el link de Discord
+                    verificacion_rol: null
                 });
-                msg.style.color = "#4ade80";
-                msg.innerText = "¡REGISTRO EXITOSO! BIENVENIDO.";
-                setTimeout(() => window.location.href = "index.html", 2000);
+
+                alert("¡Bienvenido a la flota, " + nombre + "!");
+                window.location.href = "login.html"; // Al terminar, los mandamos al login
             } catch (error) {
-                msg.style.color = "#f87171";
-                msg.innerText = "ERROR: " + error.message;
+                alert("Fallo en el sistema VIVAO: " + error.message);
             }
-        });
+        };
     </script>
 </body>
 </html>

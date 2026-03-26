@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIVAO - Login System</title>
+    <style>
+        body, html {
+            margin: 0; padding: 0; height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at center, #0d1117 0%, #000000 100%);
+            color: white; display: flex; justify-content: center; align-items: center;
+        }
+        .login-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            padding: 50px 40px; border-radius: 20px; width: 380px; text-align: center;
+        }
+        h1 { color: #00d4ff; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 40px; }
+        input {
+            width: 100%; padding: 15px; margin: 12px 0;
+            background: rgba(0, 0, 0, 0.5); border: 1px solid #222;
+            border-radius: 12px; color: white; outline: none; box-sizing: border-box;
+        }
+        .btn-login {
+            width: 100%; padding: 16px; margin-top: 20px;
+            background: linear-gradient(135deg, #00d4ff 0%, #008fb3 100%);
+            border: none; border-radius: 12px; color: #000;
+            font-weight: 700; text-transform: uppercase; cursor: pointer;
+        }
+        .footer-text { margin-top: 30px; font-size: 11px; color: #444; }
+        #discord-status { color: #5865f2; font-size: 11px; margin-bottom: 15px; display: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <h1>VIVAO</h1>
+        <div id="discord-status">🔵 MODO VINCULACIÓN DISCORD DETECTADO</div>
+        <input type="email" id="email" placeholder="Email de Piloto">
+        <input type="password" id="password" placeholder="Contraseña">
+        <button class="btn-login" onclick="login()">ACCEDER AL SISTEMA</button>
+        <p class="footer-text">By CapiJero - VIVAO Network</p>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
+        import { getFirestore, doc, updateDoc, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+  apiKey: "AIzaSyBFKirjCei95Afzajmdvg4hkgPa3etErwM",
+  authDomain: "NEXUS-8e499.firebaseapp.com",
+  projectId: "NEXUS-8e499",
+  storageBucket: "NEXUS-8e499.firebasestorage.app",
+  messagingSenderId: "475032258661",
+  appId: "1:475032258661:web:c6039e7ab56d0466e51e8c",
+  measurementId: "G-F5GHE40G60"
+};
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Atrapamos el ID de Discord que viene en la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const discordIdURL = urlParams.get('discordId');
+
+        if (discordIdURL) {
+            document.getElementById('discord-status').style.display = 'block';
+        }
+
+        window.login = async () => {
+            const email = document.getElementById('email').value.toLowerCase();
+            const pass = document.getElementById('password').value;
+
+            try {
+                // 1. Iniciamos sesión
+                await signInWithEmailAndPassword(auth, email, pass);
+                
+                // 2. Buscamos el documento del piloto
+                const q = query(collection(db, "pilotos"), where("email", "==", email));
+                const querySnapshot = await getDocs(q);
+
+                if (!querySnapshot.empty) {
+                    const pilotoDoc = querySnapshot.docs[0];
+                    
+                    // 3. ACTUALIZAMOS EL ID DE DISCORD (MAGIA)
+                    let updateData = {
+                        verificacion_rol: Date.now() // Esto avisa al Bot
+                    };
+
+                    if (discordIdURL) {
+                        updateData.discordId = discordIdURL;
+                    }
+
+                    await updateDoc(doc(db, "pilotos", pilotoDoc.id), updateData);
+                }
+                
+                // 4. Redirigimos al perfil
+                window.location.href = "perfil.html"; 
+            } catch (error) {
+                alert("Error de VIVAO: " + error.message);
+            }
+        };
+    </script>
+</body>
+</html>

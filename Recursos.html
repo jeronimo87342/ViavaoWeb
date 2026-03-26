@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { background: #050505; color: #fff; font-family: 'Segoe UI', sans-serif; }
+        .container { padding: 60px 20px; text-align: center; }
+        .resource-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            display: inline-block;
+            width: 280px;
+            margin: 20px;
+            padding: 35px;
+            transition: 0.4s ease;
+        }
+        .resource-card:hover {
+            border-color: #00d4ff;
+            box-shadow: 0 0 25px rgba(0, 212, 255, 0.4);
+            transform: translateY(-10px);
+        }
+        .resource-card h3 { color: #00d4ff; text-shadow: 0 0 10px rgba(0, 212, 255, 0.5); margin-bottom: 15px; }
+        .btn-VIVAO {
+            display: inline-block;
+            padding: 12px 25px;
+            background: transparent;
+            border: 1px solid #00d4ff;
+            color: #00d4ff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn-VIVAO:hover { background: #00d4ff; color: #000; box-shadow: 0 0 15px #00d4ff; }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="letter-spacing: 5px; color: #00d4ff;">CENTRO DE RECURSOS</h1>
+        <div class="resource-card">
+            <h3>LIVERIES VIVAO</h3>
+            <p style="color: #888;">Texturas oficiales para RFS e Infinite Flight.</p>
+            <a href="#" class="btn-VIVAO">DOWNLOAD</a>
+        </div>
+        <div class="resource-card">
+            <h3>MANUAL ATC</h3>
+            <p style="color: #888;">Protocolos de comunicación y radar.</p>
+            <a href="#" class="btn-VIVAO">VIEW DOCS</a>
+        </div>
+    </div>
+</body>
+</html>
